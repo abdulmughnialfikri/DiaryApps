@@ -38,8 +38,10 @@ public class ListNotesActivity extends AppCompatActivity {
         initToolbar();
 
         // TODO: 4/12/19 panggil initRecyclerView() disini
+        initRecyclerView();
 
         // TODO: 4/12/19 panggil initDummy() disini
+        initDummy();
     }
 
     /**
@@ -57,14 +59,13 @@ public class ListNotesActivity extends AppCompatActivity {
     public void initRecyclerView() {
         // TODO: 4/12/19 -> ganti null dengan component RecyclerView pada activity_list_notes
         // hint: gunakan findViewById(R.id.xxxxx);
-        mRecyclerView = null;
+        mRecyclerView = findViewById(R.id.rvListNotes);
 
         // TODO: 4/12/19 -> ganti null dengan objek ListNotesAdapter
-        mAdapter = null;
+        mAdapter = new ListNotesAdapter(mLists, this);
 
         // TODO: 4/12/19 -> ganti null dengan objek LinearLayoutManager
-        mLayoutManager = null;
-
+        mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
 
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
@@ -78,7 +79,11 @@ public class ListNotesActivity extends AppCompatActivity {
         // hint: lakukan setelah menambahkan constructor pada ListNotesModel
         // untuk date gunakan Tools.getCurrentDateISO8601()
 
-        mLists.add(new ListNotesModel());
+        mLists.add(new ListNotesModel("01", "https://t-ec.bstatic.com/images/hotel/max1024x768/136/136201154.jpg", "Catatan Liburanku", Tools.getCurrentDateISO8601()));
+        mLists.add(new ListNotesModel("02", "https://selerasa.com/wp-content/uploads/2015/05/images_daging_rendang-jawa.jpg", "Cara Bikin Rendang", Tools.getCurrentDateISO8601()));
+        mLists.add(new ListNotesModel("03", "https://stevelaube.com/wp-content/uploads/2017/10/bigstock-Deadline-Written-On-A-Calendar-198265843-500x334.jpg", "Deadline Minggu ini", Tools.getCurrentDateISO8601()));
+        mLists.add(new ListNotesModel("04", "https://www.washingtonpost.com/resizer/LgggStkyddK3qfFPzM3cO5Ch_aA=/1484x0/arc-anglerfish-washpost-prod-washpost.s3.amazonaws.com/public/EBULPVFULQI6PG4TXFYEHZL2EI.jpg", "Catatan Keuangan", Tools.getCurrentDateISO8601()));
+
 
         mAdapter.notifyDataSetChanged();
     }
